@@ -1,5 +1,13 @@
 <h2>Edit Cat</h2>
 
+<div class="controls">
+  <div class="switch off">
+    <div class="toggle"></div>
+  </div>
+  <%= react_component('ToggleSwitch', {on: @cat.active?}) %>
+</div>
+<br />
+
 <div class="uk-button-group">
   <%- if @cat.active? %>
     <%= button_to " Deactivate", cat_path(@cat), method: :patch, params: { 'cat[active]' => false, next_action: "edit" }, class: "button-disable" %>

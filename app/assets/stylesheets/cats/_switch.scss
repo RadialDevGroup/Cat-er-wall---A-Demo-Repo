@@ -1,0 +1,92 @@
+$grey: #ddd;
+$active-color: #8CC14C;
+
+.switch {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: bold;
+  color: #ccc;
+  text-shadow: 0px 1px 1px rgba(255,255,255,0.8);
+  height: 27px;
+  width: 65px;
+  border-radius: 27px;
+  border: 1px solid $grey;
+  background: #fff;
+  cursor: pointer;
+
+  transition: all 0.25s ease-in-out;
+
+  .toggle {
+    position: absolute;
+    top: 4px;
+    border-radius: 27px;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+
+    box-shadow:  1px 1px 4px rgba(0,0,0,0.4);
+    z-index: 9;
+
+    transition: all 0.25s ease-in-out;
+
+  }
+
+  &:before {
+    @extend .uk-icon-mixin;
+    @extend .uk-icon-check;
+    position: absolute;
+    left: 12px;
+    top: 0;
+    line-height: 27px;
+    transition: opacity 0.25s ease-in-out;
+  }
+  &:after {
+    @extend .uk-icon-mixin;
+    content: "\f00d";
+    position: absolute;
+    right: 12px;
+    top: 0;
+    line-height: 27px;
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  &.on {
+    background: $active-color;
+    color: #fff;
+
+    &:before {
+      opacity: 1;
+    }
+    &:after {
+      opacity: 0;
+    }
+
+    .toggle {
+      left: 40px;
+    }
+  }
+  &.off {
+    color: #888;
+    background: $grey;
+
+    &:before {
+      opacity: 0;
+    }
+    &:after {
+      opacity: 1;
+    }
+
+    .toggle {
+      left: 4px;
+      background: #fff;
+    }
+  }
+
+  &.loading {
+    &:after, &:before {
+      content: "\f110";
+      @extend .uk-icon-spin;
+    }
+  }
+}
