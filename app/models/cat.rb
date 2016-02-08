@@ -3,6 +3,7 @@ class Cat < ActiveRecord::Base
   validate :active, if: -> { featured? }
 
   before_save :update_featured_date, if: -> { featured? }
+  before_save :activate, if: -> { featured? }
 
   def caption_is_present
     unless caption.present?
@@ -14,5 +15,9 @@ class Cat < ActiveRecord::Base
 
   def update_featured_date
     self.featured_on = Time.zone.now
+  end
+
+  def activate
+    self.active = true
   end
 end

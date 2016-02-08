@@ -1,0 +1,80 @@
+.uk-icon-mixin {
+  font-family: FontAwesome;
+  display: inline-block;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &, &:hover, &:focus {
+    text-decoration: none;
+  }
+}
+
+.button-status-toggle {
+  @extend .uk-button;
+  position: absolute;
+}
+
+.button-disable {
+  @extend .uk-button;
+
+  &:before {
+    @extend .uk-icon-mixin;
+    @extend .uk-icon-minus-circle;
+  }
+}
+
+.button-enable {
+  @extend .uk-button;
+  @extend .uk-button-success;
+
+  &:before {
+    @extend .uk-icon-mixin;
+    @extend .uk-icon-check-square-o;
+  }
+}
+
+td.status {
+  text-align: center;
+  padding: 3px;
+
+  .button-status-toggle {
+    visibility: hidden;
+    margin-left: -18px;
+  }
+  &:hover .button-status-toggle {
+    visibility: visible;
+  }
+}
+
+.status-active,
+.status-inactive {
+  @extend .uk-icon-mixin;
+  @extend .uk-icon-small;
+  vertical-align: -30%;
+}
+i.status-active {
+  @extend .uk-icon-check;
+  @extend .uk-text-success;
+}
+
+i.status-inactive {
+  color: #aaa;
+  @extend .uk-icon-close;
+}
+
+td.uk-button-group {
+  padding: 0px;
+  display: table-cell;
+  text-align: right;
+
+  > :not(:last-child) {
+    border-right: 1px solid #aaa;
+  }
+  .uk-button {
+    border-radius: 0;
+    line-height: 40px;
+  }
+}

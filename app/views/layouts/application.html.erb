@@ -10,6 +10,9 @@
 <div class="uk-container">
   <h1><%= link_to 'Catz!!1!', root_path %></h1>
   <hr>
+  <%- flash.each do |name, message| %>
+    <div class="flash <%= name %>"><%= message %></div>
+  <% end %>
   <%= yield %>
 </div>
 

@@ -1,15 +1,15 @@
-<h2>All Teh Cats!</h2>
+<%= link_to "Moar Cat!", new_cat_path, class: 'uk-button uk-button-primary uk-float-right' %>
 
-<%= link_to "Moar Cat!", new_cat_path, class: 'uk-button uk-button-primary' %>
+<h2>All Teh Cats!</h2>
 
 <table class="uk-table uk-table-striped">
   <thead>
     <tr>
       <th>URL</th>
       <th>Caption</th>
-      <th>Active</th>
-      <th>Featured</th>
-      <th>Controls</th>
+      <th class="uk-text-center">Active</th>
+      <th class="uk-text-center">Featured</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -17,17 +17,34 @@
       <tr>
         <td><%= link_to cat.url, cat_path(cat) %></td>
         <td><%= cat.caption %></td>
-        <td><%= cat.active %></td>
-        <td>
-          <%= cat.featured %>
-          <%= cat.featured_on %>
+        <td class="status">
+          <%- if cat.active? %>
+            <%= button_to "", cat_path(cat), method: :patch, params: { 'cat[active]' => false, next_action: "index" }, class: "button-status-toggle button-disable" %>
+            <i class="status-active"></i>
+          <%- else %>
+            <%= button_to "", cat_path(cat), method: :patch, params: { 'cat[active]' => true, next_action: "index" }, class: "button-status-toggle button-enable" %>
+            <i class="status-inactive"></i>
+          <% end %>
         </td>
-        <td>
+        <td class="status">
+          <%- if cat.featured? %>
+            <%= button_to "", cat_path(cat), method: :patch, params: { 'cat[featured]' => false, next_action: "index" }, class: "button-status-toggle button-disable" %>
+            <i class="status-active"></i>
+          <%- else %>
+            <%= button_to "", cat_path(cat), method: :patch, params: { 'cat[featured]' => true, next_action: "index" }, class: "button-status-toggle button-enable" %>
+            <i class="status-inactive"></i>
+          <% end %>
+          <%- if cat.featured? %>
+            <br />
+            <%= time_ago_in_words cat.featured_on %>
+          <% end %>
+        </td>
+        <td class="uk-button-group">
           <%= link_to edit_cat_path(cat), class: 'uk-button' do %>
-            <i class="uk-icon-edit" />
+            <i class="uk-icon-edit"></i> Edit
           <% end %>
           <%= button_to cat, method: :delete, class: 'uk-button uk-button-danger' do %>
-            <i class="uk-icon-trash" />
+            <i class="uk-icon-trash"></i> Delete
           <% end %>
         </td>
       </tr>

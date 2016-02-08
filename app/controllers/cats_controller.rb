@@ -2,7 +2,7 @@ class CatsController < ApplicationController
   before_action :find_cat, except: [ :index, :new, :create ]
 
   def index
-    @cats = Cat.all
+    @cats = Cat.order :created_at
   end
 
   def show
@@ -30,7 +30,7 @@ class CatsController < ApplicationController
     @cat.attributes = cat_params
 
     if @cat.save
-      redirect_to @cat, success: "meow"
+      redirect_to (next_action == 'index' ? cats_path : edit_cat_path(@cat)), success: "meow"
     else
       flash[:error] = @cat.errors.full_messages.to_sentence
       render :new
@@ -58,5 +58,9 @@ class CatsController < ApplicationController
       :active,
       :featured
     )
+  end
+
+  def next_action
+    params[:next_action]
   end
 end
