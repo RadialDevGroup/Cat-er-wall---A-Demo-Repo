@@ -2,13 +2,16 @@
 <html>
 <head>
   <title>CatErWallADemoRepo</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
 </head>
 <body>
 
-<%= yield %>
+<div class="uk-container">
+  <h1><%= link_to 'Catz!!1!', root_path %></h1>
+  <hr>
+  <%= yield %>
+</div>
 
 </body>
 </html>

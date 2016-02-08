@@ -1,0 +1,36 @@
+<h2>All Teh Cats!</h2>
+
+<%= link_to "Moar Cat!", new_cat_path, class: 'uk-button uk-button-primary' %>
+
+<table class="uk-table uk-table-striped">
+  <thead>
+    <tr>
+      <th>URL</th>
+      <th>Caption</th>
+      <th>Active</th>
+      <th>Featured</th>
+      <th>Controls</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cats.each do |cat| %>
+      <tr>
+        <td><%= link_to cat.url, cat_path(cat) %></td>
+        <td><%= cat.caption %></td>
+        <td><%= cat.active %></td>
+        <td>
+          <%= cat.featured %>
+          <%= cat.featured_on %>
+        </td>
+        <td>
+          <%= link_to edit_cat_path(cat), class: 'uk-button' do %>
+            <i class="uk-icon-edit" />
+          <% end %>
+          <%= button_to cat, method: :delete, class: 'uk-button uk-button-danger' do %>
+            <i class="uk-icon-trash" />
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
