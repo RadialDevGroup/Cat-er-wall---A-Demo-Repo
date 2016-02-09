@@ -4,23 +4,4 @@
 
 <br />
 
-<div class="uk-button-group">
-  <%- if @cat.active? %>
-    <%= button_to " Deactivate", cat_path(@cat), method: :patch, params: { 'cat[active]' => false, next_action: "edit" }, class: "button-disable" %>
-  <%- else %>
-    <%= button_to " Activate", cat_path(@cat), method: :patch, params: { 'cat[active]' => true, next_action: "edit" }, class: "button-enable" %>
-  <% end %>
-  <%- if @cat.featured? %>
-    <%= button_to " Unfeature", cat_path(@cat), method: :patch, params: { 'cat[featured]' => false, next_action: "edit" }, class: "button-disable" %>
-  <%- else %>
-    <%= button_to " Feature", cat_path(@cat), method: :patch, params: { 'cat[featured]' => true, next_action: "edit" }, class: "button-enable" %>
-  <% end %>
-  <%- if @cat.featured? %>
-    <%= time_ago_in_words @cat.featured_on %>
-  <% end %>
-</div>
-
-<br />
-<br />
-
 <%= render 'form' %>

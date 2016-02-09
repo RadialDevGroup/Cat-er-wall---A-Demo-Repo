@@ -3,12 +3,20 @@ var Toolbar = React.createClass({
     return {cat: this.props.cat};
   },
   toggleActive: function() {
+    this.toggle({
+      'active': !this.state.cat.active
+    });
+  },
+  toggleFeatured: function() {
+    this.toggle({
+      'featured': !this.state.cat.featured
+    });
+  },
+  toggle: function(catDiff) {
     var url = '/cats/' + this.state.cat.id + '.json';
     var params = {
       '_method': 'patch',
-      'cat': {
-        'active': !this.state.cat.active
-      }
+      'cat': catDiff
     }
     var _this = this
     $.post(url, params, function(data) {

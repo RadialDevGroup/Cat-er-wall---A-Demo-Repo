@@ -1,4 +1,5 @@
 //=require 'time_ago_in_words'
+var timer;
 
 var FeaturedTime = React.createClass({
   getInitialState: function() {
@@ -10,11 +11,15 @@ var FeaturedTime = React.createClass({
   componentDidMount: function() {
     this.updateDatetime()
   },
+  componentWillUnmount: function() {
+    clearTimeout(timer);
+  },
   updateDatetime: function() {
     var featured_time = this;
-    setTimeout(function() {
+    timer = setTimeout(function() {
       var newDatetime = new Date(featured_time.props.datetime) + (new Date() - featured_time.state.startTime);
       featured_time.setState({datetime: new Date(newDatetime)});
+
       featured_time.updateDatetime();
     }, 1000);
   },
