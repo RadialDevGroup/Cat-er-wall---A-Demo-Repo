@@ -11,9 +11,9 @@ It is designed to illustrate:
 
 There are several branches at each major stage of the process as well as commits within each to show the smaller steps:
 
- 0. Original rails project
- 1. Basic component
- 2. Entire table rendered in React
+ - `0` - Original rails project
+ - `1` - Basic component
+ - `2` - Entire table rendered in React
 
 ## Setup
 
