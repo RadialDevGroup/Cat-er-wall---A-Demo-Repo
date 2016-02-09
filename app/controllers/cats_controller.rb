@@ -58,7 +58,7 @@ class CatsController < ApplicationController
     if @cat.destroy
       respond_to do |format|
         format.json do
-          render json: {cats: Cat.order(:created_at)}
+          render json: {cats: Cat.order(:created_at), success: "Raour"}
         end
         format.html do
           redirect_to cats_path, success: "Raour"

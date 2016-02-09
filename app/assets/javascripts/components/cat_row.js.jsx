@@ -1,35 +1,11 @@
 var CatRow = React.createClass({
+  mixins: [AjaxMixin],
   getInitialState: function() {
     return {cat: this.props.cat};
   },
-  toggleActive: function() {
-    this.toggle({
-      'active': !this.state.cat.active
-    });
-  },
-  toggleFeatured: function() {
-    this.toggle({
-      'featured': !this.state.cat.featured
-    });
-  },
-  remove: function() {
+  delete: function() {
     this.setState({removed: true})
     this.props.remove(this.state.cat.id);
-  },
-  toggle: function(catDiff) {
-    var url = '/cats/' + this.state.cat.id + '.json';
-    var params = {
-      '_method': 'patch',
-      'cat': catDiff
-    }
-    var _this = this
-    $.post(url, params, function(data) {
-      if (data.success) {
-        _this.setState({cat: data.cat})
-      } else {
-        console.log(data)
-      }
-    });
   },
   render: function() {
     var cat = this.state.cat;
@@ -53,7 +29,7 @@ var CatRow = React.createClass({
           <a href={catShow + '/edit'} className='uk-button'>
             <i className="uk-icon-edit"></i> Edit
           </a>
-          <a className='uk-button uk-button-danger' onClick={this.remove}>
+          <a className='uk-button uk-button-danger' onClick={this.delete}>
             <i className="uk-icon-trash"></i> Delete
           </a>
         </td>

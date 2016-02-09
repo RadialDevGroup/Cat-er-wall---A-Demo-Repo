@@ -1,16 +1,13 @@
 var CatTable = React.createClass({
+  mixins: [AjaxMixin],
   getInitialState: function() {
     return {cats: this.props.cats};
   },
-  remove: function(id) {
-    var _this = this;
-
-    $.post('/cats/' + id, {_method: 'delete'}).done(function(data) {
-      _this.setState({ cats: data.cats });
-    });
+  trash: function(id) {
+    this.ajaxUpdate(id, 'delete');
   },
   render: function() {
-    var remove = this.remove;
+    var trash = this.trash;
     return (
       <table className="uk-table uk-table-striped">
         <thead>
@@ -24,7 +21,7 @@ var CatTable = React.createClass({
         </thead>
         <tbody>
           {this.state.cats.map(function(cat) {
-            return <CatRow key={cat.id} cat={cat} remove={remove} />;
+            return <CatRow key={cat.id} cat={cat} remove={trash} />;
           })}
         </tbody>
       </table>
