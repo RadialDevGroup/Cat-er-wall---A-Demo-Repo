@@ -56,7 +56,14 @@ class CatsController < ApplicationController
 
   def destroy
     if @cat.destroy
-      redirect_to cats_path, success: "Raour"
+      respond_to do |format|
+        format.json do
+          render json: {cats: Cat.order(:created_at)}
+        end
+        format.html do
+          redirect_to cats_path, success: "Raour"
+        end
+      end
     else
       redirect_to show_path, error: @cat.errors.full_messages.to_sentence
     end

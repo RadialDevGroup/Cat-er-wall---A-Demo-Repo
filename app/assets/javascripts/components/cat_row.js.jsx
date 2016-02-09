@@ -14,7 +14,7 @@ var CatRow = React.createClass({
   },
   remove: function() {
     this.setState({removed: true})
-    this.props.remove(this.state.id);
+    this.props.remove(this.state.cat.id);
   },
   toggle: function(catDiff) {
     var url = '/cats/' + this.state.cat.id + '.json';

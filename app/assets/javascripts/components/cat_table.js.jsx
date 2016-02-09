@@ -2,8 +2,12 @@ var CatTable = React.createClass({
   getInitialState: function() {
     return {cats: this.props.cats};
   },
-  remove: function() {
+  remove: function(id) {
+    var _this = this;
 
+    $.post('/cats/' + id, {_method: 'delete'}).done(function(data) {
+      _this.setState({ cats: data.cats });
+    });
   },
   render: function() {
     var remove = this.remove;
@@ -19,8 +23,8 @@ var CatTable = React.createClass({
           </tr>
         </thead>
         <tbody>
-          {this.state.cats.map(function(cat, index) {
-            return <CatRow key={index} cat={cat} remove={remove} />;
+          {this.state.cats.map(function(cat) {
+            return <CatRow key={cat.id} cat={cat} remove={remove} />;
           })}
         </tbody>
       </table>
