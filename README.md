@@ -33,8 +33,8 @@ $ bundle exec rake db:setup
 ```
 
 ## Contact
-Marshall Smith
-Radial Development Group
+Marshall Smith<br>
+Radial Development Group<br>
 marshall@radialdevgroup.com
 
 Radial Development Group is a Loveland based software development consultancy specializing in custom cloud and mobile applications.  We would love to talk to you about better processes for making better software.  Drop us a line.
