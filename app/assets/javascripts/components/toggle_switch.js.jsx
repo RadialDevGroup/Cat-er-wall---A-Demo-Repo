@@ -2,6 +2,9 @@ var ToggleSwitch = React.createClass({
   getInitialState: function() {
     return {loading: false};
   },
+  componentWillReceiveProps: function() {
+    this.setState({loading: false});
+  },
   toggle: function() {
     this.setState({loading: true});
     this.props.toggleFunction(this);

@@ -1,8 +1,10 @@
 class CatsController < ApplicationController
   before_action :find_cat, except: [ :index, :new, :create ]
+  respond_to :html, :json, only: [:index, :show]
 
   def index
     @cats = Cat.order :created_at
+    respond_with @cats
   end
 
   def show
@@ -29,11 +31,26 @@ class CatsController < ApplicationController
   def update
     @cat.attributes = cat_params
 
+    result = {}
     if @cat.save
-      redirect_to (next_action == 'index' ? cats_path : edit_cat_path(@cat)), success: "meow"
+      result = {redirect: (next_action == 'index' ? cats_path : edit_cat_path(@cat)), success: "meow"}
     else
       flash[:error] = @cat.errors.full_messages.to_sentence
-      render :new
+      result = {render: :edit}
+    end
+
+    respond_to do |format|
+      format.json do
+        flash[:error] = result[:error] if result[:error].present? and result[:redirect].present?
+        render json: result.merge(flash).merge(cat: @cat)
+      end
+      format.html do
+        if result.keys.include? :redirect
+          redirect_to result[:redirect], success: result[:success]
+        else
+          render result[:render]
+        end
+      end
     end
   end
 
