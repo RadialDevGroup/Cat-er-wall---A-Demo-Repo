@@ -1,0 +1,55 @@
+.score {
+  max-width: 600px;
+  height:0;
+  padding-top:53%;
+  position: relative;
+}
+.score-graph {
+  height: 100%;
+  display:block;
+  width: 100%;
+  position: absolute;
+  top:0;
+  left:0;
+}
+text {
+  font-family: museo_sans,arial,sans-serif;
+  font-size: 12px;
+}
+.level-label {
+  dominant-baseline: middle;
+  fill: black;
+}
+.question-number {
+  fill: grey;
+}
+path#graph-bounds {
+  stroke: #bbb;
+  stroke-width: 0.5px;
+  fill: none;
+}
+path#goal-line {
+  stroke: #8cc63c;
+  stroke-width: 2px;
+}
+#goal-label {
+  dominant-baseline: middle;
+  fill: #8cc63c;
+}
+path#score-line {
+  stroke: #00aedf;
+  stroke-width: 2px;
+}
+#score-label {
+  dominant-baseline: middle;
+  fill: #00aedf;
+}
+.question-score {
+  fill: #fc0;
+  r: 10px;
+}
+#score-plot {
+  stroke: #f63;
+  fill: none;
+  stroke-width: 1.5px;
+}
